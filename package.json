@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@remotion/cli": "^4.0.255",
+    "recharts": "^2.15.1",
+    "remotion": "^4.0.255"
+  }
+}
