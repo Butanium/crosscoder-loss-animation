@@ -14,7 +14,7 @@ const BallTrajectories = () => {
   // Calculate positions based on gradient descent
   const calculatePosition = (t, gradientFn) => {
     let pos = { ...startPoint };
-    const stepSize = 1;
+    const stepSize = 0.1;
     const steps = Math.floor(t * 3);
     let prevPos = { ...pos }; // Store previous position
 
@@ -44,18 +44,19 @@ const BallTrajectories = () => {
   // Gradient functions
   const leftBallGradient = (x, y) => {
     const eps = 0.0001;
-    const gradX = -1 / (2 * Math.sqrt(Math.max(eps, x)));
-    const gradY = -1 / (2 * Math.sqrt(Math.max(eps, y)));
-    // Normalize gradient vector
+    // For √(x²) + √(y²), the gradient is [sign(x), sign(y)]
+    const gradX = -Math.sign(x);
+    const gradY = -Math.sign(y);
     return [gradX, gradY];
   };
 
   const rightBallGradient = (x, y) => {
     const eps = 0.0001;
-    const sum = Math.max(eps, x + y);
-    const grad = -1 / (2 * Math.sqrt(sum));
-    // Return normalized gradient
-    return [grad, grad];
+    const norm = Math.sqrt(Math.max(eps, x * x + y * y));
+    // For √(x² + y²), the gradient is [x/√(x² + y²), y/√(x² + y²)]
+    const gradX = -x / norm;
+    const gradY = -y / norm;
+    return [gradX, gradY];
   };
 
   // Replace useState/useEffect with Remotion's frame-based animation
@@ -184,13 +185,13 @@ const BallTrajectories = () => {
           <svg width="16" height="16" className="inline-block flex-shrink-0" style={{ transform: 'translateY(1px)' }}>
             <circle cx="8" cy="8" r="6" fill="#e63946" />
           </svg>
-          <span className="leading-none">minimizing √x + √y</span>
+          <span className="leading-none">Crosscoder-like loss: minimizing √(x²) + √(y²)</span>
         </div>
         <div className="flex items-center gap-3">
           <svg width="16" height="16" className="inline-block flex-shrink-0" style={{ transform: 'translateY(1px)' }}>
             <circle cx="8" cy="8" r="6" fill="#2a9d8f" />
           </svg>
-          <span className="leading-none">minimizing √(x + y)</span>
+          <span className="leading-none">SAE-like loss: minimizing √(x² + y²)</span>
         </div>
       </div>
     </div>
