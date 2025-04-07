@@ -11,12 +11,8 @@ This project visualizes gradient descent optimization using animated ball trajec
 
 ## Demo
 
-<div align="center">
-  <video width="800" controls>
-    <source src="out/output.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</div>
+https://github.com/user-attachments/assets/c89f7797-4d9b-440f-a831-cbfca91621ee
+
 
 ## Prerequisites
 
