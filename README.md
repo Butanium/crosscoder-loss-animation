@@ -9,6 +9,15 @@ This project visualizes gradient descent optimization using animated ball trajec
 - Smooth animation using Remotion
 - Visualization using Recharts for the coordinate system
 
+## Demo
+
+<div align="center">
+  <video width="800" controls>
+    <source src="out/output.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div>
+
 ## Prerequisites
 
 - Node.js (latest LTS version recommended)
